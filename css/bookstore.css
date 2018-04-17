@@ -1,0 +1,50 @@
+/* Page */
+body{
+	background-image: url("../img/bg2.png");
+	background-repeat: repeat;
+	background-attachment: fixed;
+	background-position: center; 
+	background-color: #cccccc;
+}
+/* Index */
+.contentContainer{
+	padding: 15px 50px;
+}
+.sidebar{
+	padding: 0 10px;
+}
+.bookContainer{
+	padding: 0;
+}
+.index-titleContainer{
+	background-color: white;
+}
+.title{
+	display: block;
+	text-align: center;
+	padding: 2%;
+}
+.bestsellerSection{
+	background-color: white;
+	border: 1px solid;
+	padding: 2%;
+}
+/* Login */
+.loginContainer{
+	display: block; 
+	text-align: center;
+	padding: 5%; 
+}
+.textInput{
+	width: 50%;
+	margin: 5px;
+	padding: 3px;
+}
+.loginbutton{
+	margin-top: 2%;
+}
+.logCont{
+	padding: 40px 20px;
+	background-color: lightgreen;
+	border: 1px solid;
+}
