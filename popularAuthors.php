@@ -24,30 +24,22 @@
 			<div class="col-md-9 bookContainer" style="background-color: salmon;">
 				<!-- BESTSELLERS BOOKS -->
 				<div class="col-sm-12 index-titleContainer">
-					<?php 
-						if(isset($_GET['a']) /*you can validate the link here*/){
-		    			$_SESSION['link']=$_GET['a'];
-		    			$genre = $_SESSION['link']; }
-						$titt = mysqli_query($conn, 'SELECT catName FROM categories WHERE catID=' . $genre . '');
-						if($titt){
-							while($rr = mysqli_fetch_array($titt)){
-								echo "<h3 class='title'>" . $rr['catName'] . "</h3>";
-							}
-						}
-						?>
+					<h3 class='title'>Authors</h3>
 				</div>
 				<div class="row genreList-container">
 				<?php
-          $result = mysqli_query($conn, 'SELECT books.bookID, books.bookName, books.bookAuthor, books.bookCategory, books.bookPrice, books.bookImg, authors.authorID, authors.authorName, authors.authorLastName, categories.catID, categories.catName FROM books INNER JOIN authors ON authors.authorID = books.bookAuthor INNER JOIN categories ON categories.catID = books.bookCategory WHERE catID = ' . $genre . '');
+          $result = mysqli_query($conn, 'SELECT authors.authorID, authors.authorName, authors.authorLastName, authors.authorCountry, authors.authorDescription, authors.authorImg, countries.countryID, countries.countryName FROM authors INNER JOIN countries ON authors.authorCountry = countries.countryID ORDER BY authors.authorName ASC');
           if(!$result){
             echo '<script language="javascript">alert("Error loading data")</script>';
             header("Location: ".$_SERVER["HTTP_REFERER"]);
           }
           if($result){
           	while($row = mysqli_fetch_array($result)){
-							echo "<div class='col-sm-3 bestsellerSection'>
-								<img class='book-cover' src='" . $row['bookImg'] . "' /><br /><br />
-								<h6>" . $row['bookName'] . "</h6><p>" . $row['authorName'] . " " . $row['authorLastName'] . "</p><p>$" . $row['bookPrice'] . "</p><button type='submit' class='btn'>Add to Cart</button></div>";
+							echo "<div class='col-sm-6 authorsSection'>
+								<img class='autors-img' src='" . $row['authorImg'] . "' />
+								<h3>" . $row['authorName'] . " " . $row['authorLastName'] . "</h3><h5>" . $row['countryName'] ."</h5>
+								<p>" . $row['authorDescription'] . "</p>
+							<button type='submit' class='btn authors-btn'>See More</button></div>";
 						}
           }
 

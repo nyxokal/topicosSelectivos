@@ -5,18 +5,18 @@
 	<div class="contentContainer">
 		<div class="row">
 			<!-- SIDEBAR -->
-			<div class="col-md-3 sidebar" style="background-color: lightblue;">
-				<div style="background-color: white;">
-					Browse by Category
+			<div class="col-md-3 sidebar">
+				<div class="sidebar-div">
+					<a class="sidebar-a" href="categories.php">Browse by Category</a>
+				</div><!--
+				<div class="sidebar-div">
+					<a class="sidebar-a"  href="genreList.php">Browse by Genre</a>
+				</div>-->
+				<div class="sidebar-div">
+					<a class="sidebar-a"  href="popularBooks.php">Popular Books</a>
 				</div>
-				<div style="background-color: white;">
-					Browse by Genre
-				</div>
-				<div style="background-color: white;">
-					Popular Books
-				</div>
-				<div style="background-color: white;">
-					Popular Authors
+				<div class="sidebar-div">
+					<a class="sidebar-a"  href="popularAuthors.php">Popular Authors</a>
 				</div>
 			</div>
 			<!-- END SIDEBAR -->
@@ -38,7 +38,9 @@
 						if($result){
 							$total = 1;
 							while(($row = mysqli_fetch_array($result)) && ($total<=4)){
-								echo "<div class='col-sm-3 bestsellerSection'><h6>" . $row['bookName'] . "</h6><p>";
+								echo "<div class='col-sm-3 bestsellerSection'>
+									<img class='book-cover' src='" . $row['bookImg'] . "' /><br /><br />
+									<h6>" . $row['bookName'] . "</h6><p>";
 								$author = $row['bookAuthor'];
 								$secondResult = mysqli_query($conn, 'SELECT * FROM authors WHERE authorID =' . $author .'');
 								if(!$secondResult){
@@ -76,7 +78,9 @@
 						if($result){
 							$total = 1;
 							while(($row = mysqli_fetch_array($result)) && ($total<=8)){
-								echo "<div class='col-sm-3 bestsellerSection'><h6>" . $row['bookName'] . "</h6><p>";
+								echo "<div class='col-sm-3 bestsellerSection'>
+									<img class='book-cover' src='" . $row['bookImg'] . "' /><br /><br />
+									<h6>" . $row['bookName'] . "</h6><p>";
 								$author = $row['bookAuthor'];
 								$secondResult = mysqli_query($conn, 'SELECT * FROM authors WHERE authorID =' . $author .'');
 								if(!$secondResult){

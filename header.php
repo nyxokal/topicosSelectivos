@@ -8,6 +8,8 @@
 	<title>FUCK</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bookstore.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 
@@ -24,12 +26,6 @@
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="bestsellers.php">Bestsellers</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="genreList.php">Genres</a>
-	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="categories.php">Category</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="contact.php">Contact</a>
