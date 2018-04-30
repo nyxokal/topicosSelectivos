@@ -46,11 +46,6 @@ body{
 	border: 1px solid;
 	padding: 2%;
 }
-.book-cover{
-	width: 116px;
-	height: 180px;
-	text-align: center;
-}
 /* Login */
 .loginContainer{
 	display: block; 
@@ -70,31 +65,7 @@ body{
 	background-color: lightgreen;
 	border: 1px solid;
 }
-/* PROFILE */
-.userContainer{    
-	background-color: lightblue;
-    padding: 2%;
-}
-.profile-wrapper{
-	padding: 1.5%;
-    border: 1px solid black;
-}
-.profile-btn{
-    margin-left: 35%;
-    width: 25%;
-}
-dd{
-	padding-left: 2%;
-}
-.profile-input{
-	border: 0;
-    background-color: lightblue;
-    color: black;
-}
-.edit-btn{
-    margin-left: 1%;
-    width: 25%;
-}
+
 /* GENRE LIST */
 .genreList-container{
 	margin: 0;
@@ -162,4 +133,3 @@ dd{
 	width: 200px;
 	height: 200px;
 }
-

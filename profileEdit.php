@@ -28,17 +28,29 @@
 					if($result){
 						#echo "Logged in as " . $userID;
 						while($row = mysqli_fetch_array($result)){
-							echo "<h3>Welcome, " . $row['userUsername'] . "!</h3><br/><div class='profile-wrapper'><dl>
+							echo "<h3>Edit Profile</h3><br/><div class='profile-wrapper'><form action='includes/profileEdit.php' method='POST' id='profileEditForm'><dl>
 									<dt>My Username:</dt>
-									<dd><input class='profile-input' disabled type='text' name='' value='". $row['userUsername'] ."'></dt>
+									<dd><input type='text' name='userUsername' value='". $row['userUsername'] ."'></dt>
 									<dt>My Name:</dt>
-									<dd><input class='profile-input' disabled type='text' name='' value='". $row['userName'] . " " . $row['userLastName'] ."'></dd>
+									<dd><input type='text' name='userName' value='". $row['userName'] . "'>
+									<input type='text' name='userLName' value='" . $row['userLastName'] ."'></dd>
 									<dt>My Country:</dt>
-									<dd><input class='profile-input' disabled type='text' name='' value='". $row['countryName'] ."'></dd>
+									<dd><select form='profileEditForm' name='userCountry'>";
+								$countriesResult = mysqli_query($conn, 'SELECT * FROM countries');
+								if($countriesResult){
+									while($rr = mysqli_fetch_array($countriesResult)){
+									echo "<option value='" . $rr['countryID'] . "'>" . $rr['countryName'] . "</option>";
+									}
+								}
+								if(!$countriesResult){
+									echo "Death";
+								}
+								echo "</select></dd>
 									<dt>My Password:</dt>
-									<dd><input class='profile-input' disabled type='password' name='' value='" . $row['userPwd'] . "'></dd>
+									<dd><input type='text' name='userPwd' value='" . $row['userPwd'] . "'></dd>
 								</dl>
-									<button type='submit' class='btn profile-btn'><a class='category-a' href='profileEdit.php'>Edit Profile</a></button>
+									<button type='submit' class='btn edit-btn'>Submit</button>
+									<button class='btn edit-btn'><a class='category-a' href='profile.php'>Cancel</a></button></form>
 								</div>";
 						}
 					}

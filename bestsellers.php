@@ -1,43 +1,43 @@
 <?php 
 	include 'header.php';
 ?>
-	<!-- CONTENT -->
 	<div class="contentContainer">
 		<div class="row">
 			<!-- SIDEBAR -->
-			<div class="col-md-3 sidebar" style="background-color: lightblue;">
-				<div style="background-color: white;">
-					Browse by Category
+			<div class="col-md-3 sidebar">
+				<div class="sidebar-div">
+					<a class="sidebar-a" href="categories.php">Browse by Category</a>
+				</div><!--
+				<div class="sidebar-div">
+					<a class="sidebar-a"  href="genreList.php">Browse by Genre</a>
+				</div>-->
+				<div class="sidebar-div">
+					<a class="sidebar-a"  href="popularBooks.php">Popular Books</a>
 				</div>
-				<div style="background-color: white;">
-					Browse by Genre
-				</div>
-				<div style="background-color: white;">
-					Popular Books
-				</div>
-				<div style="background-color: white;">
-					Popular Authors
+				<div class="sidebar-div">
+					<a class="sidebar-a"  href="popularAuthors.php">Popular Authors</a>
 				</div>
 			</div>
 			<!-- END SIDEBAR -->
 			<!-- BOOK DISPLAYS -->
 			<div class="col-md-9 bookContainer" style="background-color: salmon;">
 				<!-- BESTSELLERS BOOKS -->
-				<div class="col-sm-12 bestsellerTitle">
+				<div class="col-sm-12 index-titleContainer">
 					<h3 class="title">Bestsellers</h3>
 				</div>
-				<div class="row" style="margin: 0;">
+				<div class="row genreList-container">
 				<?php 
 						$result = mysqli_query($conn, 'SELECT * FROM books WHERE bookIsBestseller = 1');
 						if(!$result){
+							echo '<script language="javascript">alert("Error loading data")</script>';
 							header("Location: ".$_SERVER["HTTP_REFERER"]);
-							echo '<script language="javascript">';
-							echo 'alert("Error loading data")';
-							echo '</script>';
 						}
 						if($result){
-							while($row = mysqli_fetch_array($result)){
-								echo "<div class='col-sm-3 bestsellerSection'><h6>" . $row['bookName'] . "</h6><p>";
+							$total = 1;
+							while(($row = mysqli_fetch_array($result)) && ($total<=10)){
+								echo "<div class='col-sm-3 bestsellerSection'>
+									<img class='book-cover' src='" . $row['bookImg'] . "' /><br /><br />
+									<h6>" . $row['bookName'] . "</h6><p>";
 								$author = $row['bookAuthor'];
 								$secondResult = mysqli_query($conn, 'SELECT * FROM authors WHERE authorID =' . $author .'');
 								if(!$secondResult){
@@ -52,13 +52,13 @@
 									}
 								}
 								echo "</p><p>$" . $row['bookPrice'] . "</p><button type='submit' class='btn'>Add to Cart</button></div>";
+								$total++;
 							}
-							echo "<button type='submit' class='btn'>More</button>";
 						}
 
-				?></div>
-				<!-- END BESTSELLER BOOKS -->
+				?>
 			</div>
+				<!-- END BESTSELLER BOOKS -->
 			<!-- END BOOK DISPLAYS -->
 		</div>
 	</div>
