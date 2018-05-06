@@ -10,12 +10,12 @@
 
 	if(!$row = mysqli_fetch_assoc($result)){
 		echo "not found" + $userQuery + $username + $userPwd;
-		exit();
+		#exit();
 	}
 	else{
 		$_SESSION['id'] = $row['userID'];
 		$_SESSION['userlogin'] = $username;
-		echo 'Gut';
+		$_SESSION['userOrder'] = "Empty";
 	}
 	header("Location: ../index.php");	
-?> 
+?>
