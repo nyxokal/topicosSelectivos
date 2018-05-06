@@ -40,18 +40,12 @@
 									<h6>" . $row['bookName'] . "</h6><p>";
 								$author = $row['bookAuthor'];
 								$secondResult = mysqli_query($conn, 'SELECT * FROM authors WHERE authorID =' . $author .'');
-								if(!$secondResult){
-									header("Location: ".$_SERVER["HTTP_REFERER"]);
-									echo '<script language="javascript">';
-									echo 'alert("Error loading data")';
-									echo '</script>';
-								}
 								if($secondResult){
 									while($rrow = mysqli_fetch_array($secondResult)){
 										echo $rrow['authorName'] . " " . $rrow['authorLastName'];
 									}
 								}
-								echo "</p><p>$" . $row['bookPrice'] . "</p><button type='submit' class='btn'>Add to Cart</button></div>";
+								echo "</p><p>In Stock: " . $row['bookAmount'] . "</p><p>Price: $" . $row['bookPrice'] . "</p><button type='submit' class='btn'>Add to Cart</button></div>";
 								$total++;
 							}
 						}

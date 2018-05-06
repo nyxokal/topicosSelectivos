@@ -38,7 +38,7 @@
 				</div>
 				<div class="row genreList-container">
 				<?php
-          $result = mysqli_query($conn, 'SELECT books.bookID, books.bookName, books.bookAuthor, books.bookCategory, books.bookPrice, books.bookImg, authors.authorID, authors.authorName, authors.authorLastName, categories.catID, categories.catName FROM books INNER JOIN authors ON authors.authorID = books.bookAuthor INNER JOIN categories ON categories.catID = books.bookCategory WHERE catID = ' . $genre . '');
+          $result = mysqli_query($conn, 'SELECT books.bookID, books.bookName, books.bookAuthor, books.bookCategory, books.bookPrice, books.bookImg, books.bookAmount, authors.authorID, authors.authorName, authors.authorLastName, categories.catID, categories.catName FROM books INNER JOIN authors ON authors.authorID = books.bookAuthor INNER JOIN categories ON categories.catID = books.bookCategory WHERE catID = ' . $genre . '');
           if(!$result){
             echo '<script language="javascript">alert("Error loading data")</script>';
             header("Location: ".$_SERVER["HTTP_REFERER"]);
@@ -47,8 +47,13 @@
           	while($row = mysqli_fetch_array($result)){
 							echo "<div class='col-sm-3 bestsellerSection'>
 								<img class='book-cover' src='" . $row['bookImg'] . "' /><br /><br />
-								<h6>" . $row['bookName'] . "</h6><p>" . $row['authorName'] . " " . $row['authorLastName'] . "</p><p>$" . $row['bookPrice'] . "</p><button type='submit' class='btn'>Add to Cart</button></div>";
+								<h6>" . $row['bookName'] . "</h6><p>" . $row['authorName'] . " " . $row['authorLastName'] . "</p><p>In Stock: " . $row['bookAmount'] . "</p><p>Price: $" . $row['bookPrice'] . "</p>
+									<form class='invisibleForm' action='includes/cartOp.php' method='POST'>
+									<input type='hidden' name='bookToAdd' value='" . $row['bookID'] ."'>
+									<button type='submit' class='btn'>Add to Cart</button>
+									</form></div>";
 						}
+						echo $_SESSION['userOrder'];
           }
 
 				?>
